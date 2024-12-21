@@ -40,11 +40,15 @@ export default function SignupFormDemo() {
     e.preventDefault();
     try {
       const { data } = await register({
-        variables: formData,
+        variables: {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        },
       });
       console.log("Registration successful:", data);
-        if (formData.role === "buyer") {
-          navigate("/buyer");
+      if (formData.role === "buyer") {
+        navigate("/buyer");
       } else if (formData.role === "seller") {
         navigate("/sellerDashboard");
       }
