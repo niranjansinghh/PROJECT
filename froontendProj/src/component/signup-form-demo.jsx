@@ -4,6 +4,8 @@ import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { cn } from "../lib/utils";
 import { gql, useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
+import BuyerPage from "./BuyerPage";
 
 const REGISTER_USER = gql`
   mutation Register($username: String!, $email: String!, $password: String!) {
@@ -21,9 +23,11 @@ export default function SignupFormDemo() {
     username: "",
     email: "",
     password: "",
+    role: "",
   });
 
   const [register, { loading, error }] = useMutation(REGISTER_USER);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -39,7 +43,11 @@ export default function SignupFormDemo() {
         variables: formData,
       });
       console.log("Registration successful:", data);
-      // Handle successful registration (e.g., store token, redirect)
+        if (formData.role === "buyer") {
+          navigate("/buyer");
+      } else if (formData.role === "seller") {
+        navigate("/sellerDashboard");
+      }
     } catch (err) {
       console.error("Registration error:", err);
     }
@@ -83,6 +91,19 @@ export default function SignupFormDemo() {
             value={formData.password}
             onChange={handleChange}
           />
+        </LabelInputContainer>
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="role">Role</Label>
+          <select
+            id="role"
+            value={formData.role}
+            onChange={handleChange}
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <option value="">Select your role</option>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+          </select>
         </LabelInputContainer>
 
         <button
