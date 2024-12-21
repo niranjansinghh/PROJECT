@@ -7,6 +7,8 @@ import { BackgroundLinesDemo } from "./component/background";
 import BuyerPage from "./component/BuyerPage";
 import Logout from "./component/Logout";
 import SellerDashboard from "./component/sellerDashboard";
+import HouseDetails from "./component/HouseDetails";
+
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -18,6 +20,7 @@ function App() {
           <Route path="/buyer" element={<BuyerPage />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/sellerDashboard" element={<SellerDashboard />} />
+          <Route path="/houseDetails/:id" element={<HouseDetails />} />
         </Routes>
       </Router>
     </ApolloProvider>

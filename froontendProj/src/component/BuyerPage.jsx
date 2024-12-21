@@ -16,6 +16,10 @@ const BuyerPage = () => {
     console.log("Searching in location:", location);
   };
 
+  const handleCardClick = (id) => {
+    navigate(`/houseDetails/${id}`); // Navigate to HouseDetails with the house ID
+  };
+
   return (
     <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
       <div className="flex justify-between w-full mb-4">
@@ -76,20 +80,40 @@ const BuyerPage = () => {
       </div>
 
       <div className="cards w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {/* Render different cards here */}
-        <div className="bg-white p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h3 className="font-bold text-xl">Card Title 1</h3>
-          <p className="text-gray-600">Description for card 1.</p>
+        <div
+          className="bg-white p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105"
+          onClick={() => handleCardClick(1)}
+        >
+          <img
+            src="path/to/image1.jpg"
+            alt="House 1"
+            className="w-full h-32 object-cover rounded"
+          />
+          <h3 className="font-bold text-xl">House Title 1</h3>
+          <p className="text-gray-600">Type: Apartment</p>
+          <p className="text-gray-600">Location: City Center</p>
           <p className="font-semibold text-lg mt-2">$200,000</p>
         </div>
         <div className="bg-white p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h3 className="font-bold text-xl">Card Title 2</h3>
-          <p className="text-gray-600">Description for card 2.</p>
+          <img
+            src="path/to/image2.jpg"
+            alt="House 2"
+            className="w-full h-32 object-cover rounded"
+          />
+          <h3 className="font-bold text-xl">House Title 2</h3>
+          <p className="text-gray-600">Type: House</p>
+          <p className="text-gray-600">Location: Suburb</p>
           <p className="font-semibold text-lg mt-2">$250,000</p>
         </div>
         <div className="bg-white p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <h3 className="font-bold text-xl">Card Title 3</h3>
-          <p className="text-gray-600">Description for card 3.</p>
+          <img
+            src="path/to/image3.jpg"
+            alt="House 3"
+            className="w-full h-32 object-cover rounded"
+          />
+          <h3 className="font-bold text-xl">House Title 3</h3>
+          <p className="text-gray-600">Type: Condo</p>
+          <p className="text-gray-600">Location: Downtown</p>
           <p className="font-semibold text-lg mt-2">$300,000</p>
         </div>
         {/* Add more cards as needed */}
