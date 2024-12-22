@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HouseCard from '../component/HouseCard'; // Ensure HouseCard exists
 import Popup from '../component/Popup'; // Ensure Popup exists
-import AddHouseForm from '../component/AddHouseForm'; // Ensure AddHouseForm exists
 
 const SellerDashboard = () => {
   const navigate = useNavigate();
   const [openPopup, setOpenPopup] = useState(false);
   const [selectedHouse, setSelectedHouse] = useState(null);
   const [logoutPopup, setLogoutPopup] = useState(false);
-  const [showAddHouseForm, setShowAddHouseForm] = useState(false);
   const [houses, setHouses] = useState([
     { id: 1, name: 'House 1', buyer: null },
     { id: 2, name: 'House 2', buyer: { id: 1, name: 'Buyer 1' } },
@@ -39,12 +37,6 @@ const SellerDashboard = () => {
     setTimeout(() => navigate('/login'), 2000); // After 2 seconds, redirect to login
   };
 
-  // Handle adding a house
-  const handleAddHouse = (newHouse) => {
-    setHouses([...houses, newHouse]);
-    setShowAddHouseForm(false); // Close the AddHouseForm after adding
-  };
-
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       {/* Header with buttons */}
@@ -52,7 +44,7 @@ const SellerDashboard = () => {
         <h1 className="text-2xl font-bold">My House Listings</h1>
         <div className="flex space-x-4">
           <button
-            onClick={() => setShowAddHouseForm(true)} // Show add house form
+            onClick={() => navigate('/add-house')}
             className="bg-blue-500 text-white px-4 py-2 rounded-md"
           >
             Add House
@@ -72,11 +64,6 @@ const SellerDashboard = () => {
           message="You have been logged out."
           onClose={() => setLogoutPopup(false)}
         />
-      )}
-
-      {/* Show Add House Form if necessary */}
-      {showAddHouseForm && (
-        <AddHouseForm onAddHouse={handleAddHouse} />
       )}
 
       {/* House Cards */}
