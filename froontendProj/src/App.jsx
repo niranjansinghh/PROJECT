@@ -8,6 +8,7 @@ import BuyerPage from "./component/BuyerPage";
 import Logout from "./component/Logout";
 import SellerDashboard from "./component/sellerDashboard";
 import HouseDetails from "./component/HouseDetails";
+import AddHouseForm from "./component/AddHouseForm";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/sellerDashboard" element={<SellerDashboard />} />
           <Route path="/houseDetails/:id" element={<HouseDetails />} />
+          <Route path="/add-house" element={<AddHouseForm />} />
         </Routes>
       </Router>
     </ApolloProvider>
